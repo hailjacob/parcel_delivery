@@ -4,7 +4,7 @@ pipeline {
     stage('Source') { // Get code
       steps {
         // get code from our Git repository
-        git 'https://github.com/hailjacob/parcel_delivery'
+        git 'https://github.com/hailjacob/parcel_delivery.git'
       }
     }
     stage('Compile') { // Compile and do unit testing
