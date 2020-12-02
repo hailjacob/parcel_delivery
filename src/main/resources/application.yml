@@ -8,7 +8,7 @@ spring:
     include: 'credentials'
 server:
   port: 8090
-logging.level.com.parcel.delivery: ERROR
+logging.level.com.parcel.delivery: INFO
 logging.level.root: INFO
 management:
   endpoint:

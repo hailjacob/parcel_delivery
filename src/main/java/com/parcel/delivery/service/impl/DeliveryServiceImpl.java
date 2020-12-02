@@ -45,7 +45,7 @@ public class DeliveryServiceImpl  implements DeliveryService {
             parcel.get().setDeliveryStatus(DeliveryStatus.valueOf(updateDeliveryStatusRequest.getDeliveryStatus()));
             parcel.get().setDate(Instant.now());
             parcelRepository.save(parcel.get());
-             return new MessageResponse("Updated Delivery Status for " + updateDeliveryStatusRequest.getParcelId()+ " Successfully");
+            return new MessageResponse("Updated Delivery Status for " + updateDeliveryStatusRequest.getParcelId()+ " Successfully");
         }  else {
             return new MessageResponse(updateDeliveryStatusRequest.getParcelId() + " not found ");
         }
@@ -55,6 +55,11 @@ public class DeliveryServiceImpl  implements DeliveryService {
     public MessageResponse createParcelEntry(ParcelRequest parcelRequest) {
 
         Parcel newParcel = new Parcel();
+        newParcel.setParcelId(parcelRequest.getParcelId());
+        newParcel.setParcelItem(parcelRequest.getParcelItem());
+        newParcel.setDeliveryAddress(parcelRequest.getDeliveryAddress());
+        newParcel.setAgentId(parcelRequest.getAgentId());
+        newParcel.setDeliveryStatus(DeliveryStatus.valueOf(parcelRequest.getDeliveryStatus()));
         newParcel.setDate(Instant.now());
         parcelRepository.save(newParcel);
         logger.info("Created new Delivery entry  "+ parcelRequest.getParcelId());
