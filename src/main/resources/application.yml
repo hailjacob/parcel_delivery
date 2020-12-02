@@ -1,0 +1,19 @@
+spring:
+  security:
+    user:
+      name: mfs
+      roles: USER
+    ignored: /metrics
+  profiles:
+    include: 'credentials'
+server:
+  port: 8090
+logging.level.com.parcel.delivery: ERROR
+logging.level.root: INFO
+management:
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    prometheus:
+      enabled: true
