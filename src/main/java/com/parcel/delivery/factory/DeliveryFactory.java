@@ -36,7 +36,11 @@ public class DeliveryFactory {
     }
 
     public static ParcelRequest getParcelRequest() {
-        return new ParcelRequest();
+        ParcelRequest parcelRequest = new ParcelRequest();
+        parcelRequest.setAgentId("Agent1");
+        parcelRequest.setParcelId("X1234");
+        parcelRequest.setDeliveryStatus("DELIVERY_FAILED");
+        return parcelRequest;
     }
 
     public static Optional<Parcel> getNewParcel() {
