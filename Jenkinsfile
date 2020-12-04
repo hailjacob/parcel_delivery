@@ -1,3 +1,4 @@
+
 pipeline {
   environment {
     registry = 'hailaliya/test-repo'
@@ -11,7 +12,7 @@ pipeline {
         git 'https://github.com/hailjacob/parcel_delivery.git'
       }
     }
-    stage('Test') {
+     stage('Test') {
        steps {
            sh 'gradle clean test'
          }
@@ -31,15 +32,10 @@ pipeline {
     stage('Deploy Image') {
       steps{
         script {
-          docker.withRegistry( '', registryCredential ) {
+          docker.withRegistry('https://registry-1.docker.io/v2/', registryCredential) {
             dockerImage.push()
           }
         }
-      }
-    }
-    stage('Remove Unused docker image') {
-      steps{
-        sh "docker rmi $registry:$BUILD_NUMBER"
       }
     }
   }
