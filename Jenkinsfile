@@ -12,6 +12,26 @@ pipeline {
         sh "git checkout main"
       }
     }
+    stage('Compile') {
+            steps {
+                gradlew('clean', 'classes')
+            }
+        }
+        stage('Unit Tests') {
+            steps {
+                gradlew('test')
+            }
+            post {
+                always {
+                    junit '**/build/test-results/test/TEST-*.xml'
+                }
+            }
+        }
+    stage('Build') {
+            steps {
+                gradlew('build')
+            }
+        }
     stage('Building image') {
       steps{
         script {
