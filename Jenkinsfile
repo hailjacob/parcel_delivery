@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registry = 'hailaliya/test-repo'
+    registry = 'https://hub.docker.com/repository/docker/hailaliya/test-repo'
     registryCredential = 'dockerhub'
     dockerImage = ''
   }
