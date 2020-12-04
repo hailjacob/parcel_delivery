@@ -11,9 +11,14 @@ pipeline {
         git 'https://github.com/hailjacob/parcel_delivery.git'
       }
     }
-    stage('Gradle Build') {
+     stage('Test') {
        steps {
-           sh 'gradle clean compile'
+           sh 'gradle clean test'
+         }
+    }
+     stage('Build') {
+       steps {
+           sh 'gradle build'
          }
     }
     stage('Building image') {
