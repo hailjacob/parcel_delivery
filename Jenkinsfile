@@ -13,8 +13,7 @@ pipeline {
     }
     stage('Gradle Build') {
        steps {
-          gradle('clean')
-        gradle('compileJava')
+           sh 'gradle clean compile'
          }
     }
     stage('Building image') {
