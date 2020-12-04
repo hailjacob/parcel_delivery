@@ -1,16 +1,35 @@
 pipeline {
-  agent { label 'master' }
+  environment {
+    registry = 'hailaliya/test-repo'
+    registryCredential = 'dockerhub'
+    dockerImage = ''
+  }
+  agent any
   stages {
-    stage('Source') { // Get code
+    stage('Cloning Git') {
       steps {
-        // get code from our Git repository
-        git 'https://github.com/hailjacob/parcel_delivery'
+        git 'https://github.com/hailjacob/parcel_delivery.git'
       }
     }
-    stage('Compile') { // Compile and do unit testing
-      steps {
-        // run Gradle to execute compile and unit testing
-        sh 'gradle clean compileJava test'
+    stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+        }
+      }
+    }
+    stage('Deploy Image') {
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }
+        }
+      }
+    }
+    stage('Remove Unused docker image') {
+      steps{
+        sh "docker rmi $registry:$BUILD_NUMBER"
       }
     }
   }
