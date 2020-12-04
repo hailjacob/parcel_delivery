@@ -9,6 +9,7 @@ pipeline {
     stage('Cloning Git') {
       steps {
         git 'https://github.com/hailjacob/parcel_delivery.git'
+        sh "git checkout main"
       }
     }
     stage('Building image') {
