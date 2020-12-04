@@ -13,11 +13,8 @@ pipeline {
     }
     stage('Gradle Build') {
        steps {
-            if (isUnix()) {
-                sh './gradlew clean build'
-            } else {
-                bat 'gradlew.bat clean build'
-            }
+          gradle('clean')
+        gradle('compileJava')
          }
     }
     stage('Building image') {
