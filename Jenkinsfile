@@ -29,13 +29,19 @@ pipeline {
         }
       }
     }
-    stage('Deploy Image') {
+    stage('Pushing Image') {
       steps{
         script {
           docker.withRegistry('https://registry-1.docker.io/v2/', registryCredential) {
             dockerImage.push()
           }
         }
+      }
+    }
+    stage('Deploy to kubernetes') {
+      steps{
+        sh 'kubectl create deployment hello-minikube --image=hailaliya/test-repo:104'
+        sh 'kubectl expose deployment hello-minikube --type=NodePort --port=8090'
       }
     }
   }
