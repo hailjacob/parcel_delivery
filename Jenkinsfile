@@ -10,8 +10,7 @@ pipeline {
     stage('Deploy to kubernetes') {
       steps{
         script{
-        sh 'kubectl create deployment hello-minikube --image=hailaliya/test-repo:104'
-        sh 'kubectl expose deployment hello-minikube --type=NodePort --port=8090'
+        sh 'kubectl apply -f deployment.yaml'
         }
       }
     }
