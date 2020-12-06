@@ -4,12 +4,11 @@ spring:
       name: mfs
       roles: USER
     ignored: /metrics
-  profiles:
-    include: 'credentials'
 server:
   port: 8090
-logging.level.com.parcel.delivery: INFO
+logging.level.com.parcel: INFO
 logging.level.root: INFO
+logging.level.org.springframework: INFO
 management:
   endpoint:
     health:

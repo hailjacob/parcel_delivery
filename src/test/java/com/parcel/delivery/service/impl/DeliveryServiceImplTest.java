@@ -8,10 +8,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
-
 import java.util.List;
-import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
@@ -33,18 +32,24 @@ class DeliveryServiceImplTest {
         when(parcelRepository.findByAgentId(any())).thenReturn(DeliveryFactory.getParcels());
         List<Parcel> parcels = DeliveryServiceImpl.getListOfDeliveries(DeliveryFactory.MOCKED_AGENT_ID);
         assertNotNull(parcels);
+        assertEquals(DeliveryFactory.MOCKED_AGENT_ID,parcels.get(0).getAgentId());
+        assertEquals("X1234",parcels.get(0).getParcelId());
     }
 
     @Test
     void updateDeliveryStatus() {
         when(parcelRepository.findById(any())).thenReturn(DeliveryFactory.getNewParcel());
         MessageResponse messageResponse = DeliveryServiceImpl.updateDeliveryStatus(DeliveryFactory.getUpdateDeliveryStatusRequest());
+        System.out.println(messageResponse);
         assertNotNull(messageResponse);
+        assertEquals(messageResponse.getMessage(),"Updated Delivery Status for X1234 Successfully");
+
     }
 
     @Test
     void createParcelEntry() {
         MessageResponse messageResponse = DeliveryServiceImpl.createParcelEntry(DeliveryFactory.getParcelRequest());
         assertNotNull(messageResponse);
+        assertEquals(messageResponse.getMessage(),"Saved parcel details");
     }
 }

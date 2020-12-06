@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.parcel.delivery.domain.DeliveryAddress;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 public class ParcelRequest {
 
@@ -23,6 +24,8 @@ public class ParcelRequest {
     String agentId;
 
     @JsonProperty
+    @Pattern(regexp = "ORDER_PLACED|DELIVERED|PICKED|DELIVERY_FAILED|REATTEMPT" , flags = Pattern.Flag.CASE_INSENSITIVE)
+
     String deliveryStatus;
 
     public String getParcelId() {

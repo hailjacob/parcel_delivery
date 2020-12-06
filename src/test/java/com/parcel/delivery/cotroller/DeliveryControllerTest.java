@@ -47,18 +47,18 @@ class DeliveryControllerTest {
                 .setCustomArgumentResolvers(new PageableHandlerMethodArgumentResolver())
                 .setControllerAdvice(new ExceptionController())
                 .apply(SecurityMockMvcConfigurers.springSecurity(springSecurityFilterChain));
-       RestAssuredMockMvc.standaloneSetup(mockMvcBuilder);
+        RestAssuredMockMvc.standaloneSetup(mockMvcBuilder);
     }
 
     @Test
     void getAllParcelDetails() {
-    when(deliveryService.getListOfDeliveries(MOCKED_AGENT_ID)).thenReturn(DeliveryFactory.getParcels());
-    given()
-            .accept(MediaType.APPLICATION_JSON_VALUE)
-            .when()
-            .get("/delivery/parcel/Agent1")
-            .then()
-            .statusCode(200);
+        when(deliveryService.getListOfDeliveries(MOCKED_AGENT_ID)).thenReturn(DeliveryFactory.getParcels());
+        given()
+                .accept(MediaType.APPLICATION_JSON_VALUE)
+                .when()
+                .get("/delivery/parcel/Agent1")
+                .then()
+                .statusCode(200);
     }
 
     @Test
@@ -69,7 +69,7 @@ class DeliveryControllerTest {
                 .body(updateDeliveryStatusRequest)
                 .contentType(ContentType.JSON)
                 .put("/delivery/update");
-          assertEquals(200, response.getStatusCode());
+        assertEquals(200, response.getStatusCode());
     }
 
     @Test

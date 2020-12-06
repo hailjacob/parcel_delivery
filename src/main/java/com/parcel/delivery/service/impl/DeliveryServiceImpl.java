@@ -1,7 +1,6 @@
 package com.parcel.delivery.service.impl;
 
 import com.parcel.delivery.domain.Parcel;
-import com.parcel.delivery.domain.enums.DeliveryStatus;
 import com.parcel.delivery.domain.request.ParcelRequest;
 import com.parcel.delivery.domain.request.UpdateDeliveryStatusRequest;
 import com.parcel.delivery.domain.response.MessageResponse;
@@ -42,7 +41,7 @@ public class DeliveryServiceImpl  implements DeliveryService {
         MessageResponse messageResponse;
         if(parcel.isPresent()) {
             logger.info("Updating delivery Status for "+ updateDeliveryStatusRequest.getParcelId());
-            parcel.get().setDeliveryStatus(DeliveryStatus.valueOf(updateDeliveryStatusRequest.getDeliveryStatus()));
+            parcel.get().setDeliveryStatus(updateDeliveryStatusRequest.getDeliveryStatus());
             parcel.get().setDate(Instant.now());
             parcelRepository.save(parcel.get());
             return new MessageResponse("Updated Delivery Status for " + updateDeliveryStatusRequest.getParcelId()+ " Successfully");
@@ -59,7 +58,7 @@ public class DeliveryServiceImpl  implements DeliveryService {
         newParcel.setParcelItem(parcelRequest.getParcelItem());
         newParcel.setDeliveryAddress(parcelRequest.getDeliveryAddress());
         newParcel.setAgentId(parcelRequest.getAgentId());
-        newParcel.setDeliveryStatus(DeliveryStatus.valueOf(parcelRequest.getDeliveryStatus()));
+        newParcel.setDeliveryStatus(parcelRequest.getDeliveryStatus());
         newParcel.setDate(Instant.now());
         parcelRepository.save(newParcel);
         logger.info("Created new Delivery entry  "+ parcelRequest.getParcelId());

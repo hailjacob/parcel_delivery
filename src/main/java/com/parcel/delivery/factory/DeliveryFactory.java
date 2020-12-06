@@ -37,8 +37,9 @@ public class DeliveryFactory {
 
     public static ParcelRequest getParcelRequest() {
         ParcelRequest parcelRequest = new ParcelRequest();
-        parcelRequest.setAgentId("Agent1");
-        parcelRequest.setParcelId("X1234");
+        parcelRequest.setAgentId("Agent2");
+        parcelRequest.setParcelId("X5678");
+        parcelRequest.setDeliveryAddress(new DeliveryAddress());
         parcelRequest.setDeliveryStatus("DELIVERY_FAILED");
         return parcelRequest;
     }
@@ -46,7 +47,7 @@ public class DeliveryFactory {
     public static Optional<Parcel> getNewParcel() {
         Parcel parcel = new Parcel();
         DeliveryAddress  deliveryAddress = new DeliveryAddress();
-        parcel.setDeliveryStatus(DeliveryStatus.DELIVERED);
+        parcel.setDeliveryStatus(String.valueOf(DeliveryStatus.DELIVERED));
         parcel.setAgentId(MOCKED_AGENT_ID);
         parcel.setDeliveryAddress(deliveryAddress);
         parcel.setParcelItem("Book");

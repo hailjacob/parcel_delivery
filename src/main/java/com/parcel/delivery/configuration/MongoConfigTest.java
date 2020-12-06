@@ -10,18 +10,18 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
 
 @Configuration
-@Profile("!test")
-public class MongoConfig extends AbstractMongoClientConfiguration {
+@Profile("test")
+public class MongoConfigTest extends AbstractMongoClientConfiguration {
 
     @Override
     protected String getDatabaseName() {
-        return "deliveryDb";
+        return "deliveryDb_test";
     }
 
 
     @Override
     public MongoClient mongoClient() {
-        ConnectionString connectionString = new ConnectionString("mongodb+srv://deliveryAdmin:deliveryAdPwd345@cluster0.1aqqw.mongodb.net/deliveryDb?retryWrites=true&w=majority");
+        ConnectionString connectionString = new ConnectionString("mongodb+srv://deliveryAdmin:deliveryAdPwd345@cluster0.1aqqw.mongodb.net/deliveryDb_test?retryWrites=true&w=majority");
         MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
                 .applyConnectionString(connectionString)
                 .build();

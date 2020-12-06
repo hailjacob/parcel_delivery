@@ -3,6 +3,7 @@ package com.parcel.delivery.domain.request;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 
 public class UpdateDeliveryStatusRequest {
@@ -12,6 +13,7 @@ public class UpdateDeliveryStatusRequest {
     String parcelId;
 
     @JsonProperty
+    @Pattern(regexp = "ORDER_PLACED|DELIVERED|PICKED|DELIVERY_FAILED|REATTEMPT" , flags = Pattern.Flag.CASE_INSENSITIVE)
     String deliveryStatus;
 
     public String getParcelId() {

@@ -3,14 +3,15 @@ package com.parcel.delivery.domain.response;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
-@JsonRootName(value ="message")
+@JsonRootName(value = "message")
 public class MessageResponse {
 
     @JsonProperty
     private String message;
 
+
     public MessageResponse(String message) {
-        this.message = message;
+        setMessage(message);
     }
 
     public String getMessage() {

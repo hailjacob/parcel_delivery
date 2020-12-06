@@ -2,7 +2,6 @@ package com.parcel.delivery.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.parcel.delivery.domain.enums.DeliveryStatus;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -25,12 +24,12 @@ public class Parcel {
     String agentId;
 
     @JsonProperty
-    DeliveryStatus deliveryStatus;
+    String deliveryStatus;
 
     @JsonProperty
     Instant date;
 
-    public Parcel(String parcelId, String parcelItem, DeliveryAddress deliveryAddress, String agentId, DeliveryStatus deliveryStatus) {
+    public Parcel(String parcelId, String parcelItem, DeliveryAddress deliveryAddress, String agentId, String deliveryStatus) {
         this.parcelId = parcelId;
         this.parcelItem = parcelItem;
         this.deliveryAddress = deliveryAddress;
@@ -74,11 +73,11 @@ public class Parcel {
         this.agentId = agentId;
     }
 
-    public DeliveryStatus getDeliveryStatus() {
+    public String getDeliveryStatus() {
         return deliveryStatus;
     }
 
-    public void setDeliveryStatus(DeliveryStatus deliveryStatus) {
+    public void setDeliveryStatus(String deliveryStatus) {
         this.deliveryStatus = deliveryStatus;
     }
 
