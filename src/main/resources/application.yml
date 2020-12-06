@@ -10,9 +10,10 @@ logging.level.com.parcel: INFO
 logging.level.root: INFO
 logging.level.org.springframework: INFO
 management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
   endpoint:
     health:
-      enabled: true
-      show-details: always
-    prometheus:
-      enabled: true
+      show-details: ALWAYS

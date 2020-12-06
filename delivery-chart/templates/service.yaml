@@ -1,0 +1,18 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+kind: Service
+metadata:
+  name: parcel-delivery-app
+spec:
+  ports:
+  - nodePort: 31019
+    port: 8090
+    protocol: TCP
+    targetPort: 8090
+  selector:
+    name: parcel-delivery-app
+  sessionAffinity: None
+  type: NodePort

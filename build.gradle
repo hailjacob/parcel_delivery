@@ -22,6 +22,7 @@ dependencies {
 	implementation 'ch.qos.logback:logback-core:1.2.3'
 	implementation 'ch.qos.logback:logback-access:1.2.3'
 	implementation 'net.logstash.logback:logstash-logback-encoder:6.1'
+    implementation 'io.micrometer:micrometer-registry-prometheus:latest.release'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 	testImplementation 'io.rest-assured:rest-assured:3.0.2'
